@@ -21,12 +21,20 @@ const addEventOnElements = function (elements, eventType, callback) {
 const navbar = document.querySelector("[data-navbar]");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
+const navLinks = document.querySelectorAll("[data-navbar] a"); // Select all links inside the navbar
 
 const toggleNavbar = function () {
   navbar.classList.toggle("active");
   overlay.classList.toggle("active");
   document.body.classList.toggle("nav-active");
-}
+};
+
+// Add click event to all toggler buttons
+navTogglers.forEach(toggler => toggler.addEventListener("click", toggleNavbar));
+
+// Add click event to all nav links to close the navbar when a link is clicked
+navLinks.forEach(link => link.addEventListener("click", toggleNavbar));
+
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
 
